@@ -1,7 +1,6 @@
 package com.zhuandian.bluetooth;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,32 +8,37 @@ import android.os.Handler;
 import android.os.Message;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.zhuandian.bluetooth.R;
 
+public class TestActivity extends Activity {
 
-public class MainActivity extends AppCompatActivity {
     private static final int REQUEST_ENABLE_BT = 1;
 
     private TextView txtIsConnected;
-
+    private EditText edtReceivedMessage;
+    private EditText edtSentMessage;
+    private EditText edtSendMessage;
+    private Button btnSend;
     private Button btnPairedDevices;
 
     private BluetoothAdapter mBluetoothAdapter;
     private ConnectedThread mConnectedThread;
-    private TextView tvData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        txtIsConnected = (TextView) findViewById(R.id.txtIsConnected);
+        setContentView(R.layout.activity_test);
 
+        txtIsConnected = (TextView) findViewById(R.id.txtIsConnected);
+        edtReceivedMessage = (EditText) findViewById(R.id.edtReceivedMessage);
+        edtSentMessage = (EditText) findViewById(R.id.edtSentMessage);
+        edtSendMessage = (EditText) findViewById(R.id.edtSendMessage);
+        btnSend = (Button) findViewById(R.id.btnSend);
         btnPairedDevices = (Button) findViewById(R.id.btnPairedDevices);
-        tvData = (TextView) findViewById(R.id.tv_data);
 
         btnPairedDevices.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,15 +64,30 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //点击【发送】按钮后，将文本框中的文本按照ASCII码发送到已连接的蓝牙设备
+        btnSend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (edtSendMessage.getText().toString().isEmpty()) {
+                    return;
+                }
+                String sendStr = edtSendMessage.getText().toString();
+                char[] chars = sendStr.toCharArray();
+                byte[] bytes = new byte[chars.length];
+                for (int i=0; i < chars.length; i++) {
+                    bytes[i] = (byte) chars[i];
+                }
+                edtSentMessage.append(sendStr);
+                mConnectedThread.write(bytes);
+            }
+        });
+
     }
-
-
-    StringBuilder stringBuilder = new StringBuilder();
-    List<String> datas = new ArrayList<>();
 
     @Override
     protected void onResume() {
         super.onResume();
+
         //回到主界面后检查是否已成功连接蓝牙设备
         if (BluetoothUtils.getBluetoothSocket() == null || mConnectedThread != null) {
             txtIsConnected.setText("未连接");
@@ -86,21 +105,9 @@ public class MainActivity extends AppCompatActivity {
                     case ConnectedThread.MESSAGE_READ:
                         byte[] buffer = (byte[]) msg.obj;
                         int length = msg.arg1;
-                        for (int i = 0; i < length; i++) {
+                        for (int i=0; i < length; i++) {
                             char c = (char) buffer[i];
-                            if ('-' == c) {
-                                datas.add(stringBuilder.toString());
-                                stringBuilder.delete(0, stringBuilder.length());
-
-                                String dataInfo = "";
-                                for (String data:datas){
-                                    dataInfo+=data+" ";
-                                }
-                                tvData.setText("");
-                                tvData.setText(dataInfo);
-                            } else {
-                                stringBuilder.append(c);
-                            }
+                            edtReceivedMessage.getText().append(c);
                         }
                         break;
                 }

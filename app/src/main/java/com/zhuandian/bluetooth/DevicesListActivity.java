@@ -25,7 +25,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
-import cn.jingedawang.bluetoothdemo.R;
+import com.zhuandian.bluetooth.R;
 
 
 public class DevicesListActivity extends Activity {

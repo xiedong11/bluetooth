@@ -8,7 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="cn.jingedawang.bluetoothdemo.MainActivity">
+    >
 
     <TextView
         android:layout_width="wrap_content"
@@ -17,29 +17,12 @@
         android:id="@+id/txtIsConnected" />
 
 
-    <EditText
+    <TextView
+        android:gravity="center"
+        android:layout_centerInParent="true"
+        android:id="@+id/tv_data"
         android:layout_width="wrap_content"
-        android:layout_height="150dp"
-        android:inputType="textMultiLine"
-        android:ems="10"
-        android:layout_below="@+id/txtIsConnected"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="23dp"
-        android:id="@+id/edtReceivedMessage"
-        android:hint="接收区"
-        android:layout_alignParentEnd="true" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="100dp"
-        android:inputType="textMultiLine"
-        android:ems="10"
-        android:layout_below="@+id/edtReceivedMessage"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="13dp"
-        android:id="@+id/edtSentMessage"
-        android:hint="发送区"
-        android:layout_alignParentEnd="true" />
+        android:layout_height="wrap_content"/>
 
     <Button
         android:text="连接蓝牙设备"
@@ -50,26 +33,6 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:text=""
-        android:hint="在此填写发送内容"
-        android:ems="10"
-        android:layout_below="@+id/edtSentMessage"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="21dp"
-        android:id="@+id/edtSendMessage"
-        android:layout_toStartOf="@+id/btnSend" />
-
-    <Button
-        android:text="发送"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/edtSendMessage"
-        android:layout_alignParentEnd="true"
-        android:id="@+id/btnSend" />
 
 
 </RelativeLayout>
