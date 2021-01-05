@@ -166,8 +166,12 @@ public class MainActivity extends AppCompatActivity {
             }
 
         }
-        LineDataSet dataSet = new LineDataSet(entries, "电阻");
+        LineDataSet dataSet = new LineDataSet(entries, "电阻数据表");
         LineData lineData = new LineData(dataSet);
+        dataSet.setLineWidth(3.0f);
+        dataSet.setMode(LineDataSet.Mode.HORIZONTAL_BEZIER);
+        dataSet.setColor(Color.RED);
+        dataSet.setCircleColor(Color.BLACK);
         mChart.setData(lineData);
         mChart.invalidate(); // refresh
     }
