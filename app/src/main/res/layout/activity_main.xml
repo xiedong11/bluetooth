@@ -18,11 +18,20 @@
 
 
     <TextView
+        android:layout_below="@+id/txtIsConnected"
         android:gravity="center"
         android:layout_centerInParent="true"
         android:id="@+id/tv_data"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
+
+
+    <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/chart1"
+        android:layout_width="match_parent"
+        android:layout_marginTop="20dp"
+        android:layout_height="500dp"
+        android:layout_below="@+id/tv_data" />
 
     <Button
         android:text="连接蓝牙设备"

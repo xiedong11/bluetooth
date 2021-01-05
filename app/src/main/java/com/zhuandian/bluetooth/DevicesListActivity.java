@@ -30,7 +30,6 @@ import com.zhuandian.bluetooth.R;
 
 public class DevicesListActivity extends Activity {
 
-    private ProgressBar progressbarSearchDevices;
 
     private BluetoothAdapter mBluetoothAdapter;
     private List<String> mDevicesArray = new ArrayList<String>();
@@ -44,7 +43,6 @@ public class DevicesListActivity extends Activity {
         setContentView(R.layout.listview_devices);
 
         ListView listView = (ListView) findViewById(R.id.listview_devices);
-        progressbarSearchDevices = (ProgressBar) findViewById(R.id.progressbar_search_devices);
         mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
 
         // 将已配对的设备添加到列表中
@@ -62,7 +60,7 @@ public class DevicesListActivity extends Activity {
         registerReceiver(mReceiver, filter); // Don't forget to unregister during onDestroy
         // 搜索蓝牙设备
         mBluetoothAdapter.startDiscovery();
-        progressbarSearchDevices.setVisibility(View.VISIBLE);
+
 
         // 为ListView控件设置适配器
         devicesListAdapter = new DevicesListAdapter<String>(getApplicationContext(), mDevicesArray);
@@ -154,7 +152,6 @@ public class DevicesListActivity extends Activity {
                         Log.d("log", "连接成功");
                         Toast.makeText(getApplicationContext(), "连接成功", Toast.LENGTH_SHORT).show();
                         BluetoothUtils.setBluetoothSocket(socket);
-                        progressbarSearchDevices.setVisibility(View.INVISIBLE);
 
                         // 连接成功，返回主界面
                         finish();
