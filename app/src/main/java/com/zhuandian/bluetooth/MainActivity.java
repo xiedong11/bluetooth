@@ -58,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
     private ConnectedThread mConnectedThread;
     private TextView tvData;
     private LineChart mChart;
+    private String fileName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -132,8 +133,8 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         DataEntity dataEntity = new DataEntity();
-                        String s = editText.getText().toString();
-                        if (TextUtils.isEmpty(s)) {
+                         fileName = editText.getText().toString();
+                        if (TextUtils.isEmpty(fileName)) {
                             Toast.makeText(MainActivity.this, "请输入数据名称", Toast.LENGTH_SHORT).show();
                             return;
                         }
@@ -326,12 +327,12 @@ public class MainActivity extends AppCompatActivity {
      */
     private void writeExcel() {
         if (getExternalStoragePath() == null) return;
-        excelFilePath = getApplication().getFilesDir() + File.separator + "mine.xls";
+        excelFilePath = getApplication().getFilesDir() + File.separator + fileName+".xls";
         if (checkFile(excelFilePath)) {
             deleteByPath(excelFilePath);//如果文件存在则先删除原有的文件
         }
-        File file = new File(getExternalStoragePath() + "/ExportExcel");
-        makeDir(file);
+//        File file = new File(getExternalStoragePath() + "/ExportExcel");
+//        makeDir(file);
         ExcelUtil.initExcel(excelFilePath, "中文版", colNames);//需要写入权限
         ExcelUtil.writeObjListToExcel(getTravelData(), excelFilePath, this);
 
