@@ -39,6 +39,7 @@ import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.github.mikephil.charting.utils.Utils;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -327,7 +328,13 @@ public class MainActivity extends AppCompatActivity {
      */
     private void writeExcel() {
         if (getExternalStoragePath() == null) return;
-        excelFilePath = getApplication().getFilesDir() + File.separator + fileName+".xls";
+        String savePath = null;
+        try {
+            savePath = isExistDir("fileStorage");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        excelFilePath = savePath + File.separator + fileName+".xls";
         if (checkFile(excelFilePath)) {
             deleteByPath(excelFilePath);//如果文件存在则先删除原有的文件
         }
@@ -343,6 +350,23 @@ public class MainActivity extends AppCompatActivity {
 //       setNewData(datas);
         mChart.clear();
         tvData.setText("");
+    }
+
+
+    /**
+     * @param saveDir
+     * @return
+     * @throws IOException
+     * 判断下载目录是否存在
+     */
+    private String isExistDir(String saveDir) throws IOException {
+        // 下载位置
+        File downloadFile = new File(Environment.getExternalStorageDirectory(), saveDir);
+        if (!downloadFile.mkdirs()) {
+            downloadFile.createNewFile();
+        }
+        String savePath = downloadFile.getAbsolutePath();
+        return savePath;
     }
 
     private ArrayList<ArrayList<String>> getTravelData() {
