@@ -105,6 +105,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+        requestPermission();
+
+
     }
 
     private void initLineChar() {
