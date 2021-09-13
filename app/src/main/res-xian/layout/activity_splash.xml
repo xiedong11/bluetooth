@@ -6,29 +6,33 @@
     android:background="@color/color_ffffff"
     tools:context=".SplashActivity">
 
+
+
+
     <ImageView
+        android:id="@+id/iv_log"
         android:layout_width="180dp"
         android:layout_height="180dp"
         android:layout_centerInParent="true"
-        android:src="@drawable/si_chuan_logo"/>
+        android:src="@drawable/xian_logo" />
 
 
     <ImageView
-        android:paddingHorizontal="80dp"
-        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
         android:layout_width="wrap_content"
-        android:layout_height="80dp"
-        android:layout_above="@+id/bottom_1"
-        android:layout_marginBottom="-30dp"
-        android:src="@drawable/sichuan_bottom_2"/>
+        android:layout_height="50dp"
+        android:layout_below="@+id/iv_log"
+        android:layout_centerHorizontal="true"
+        android:paddingHorizontal="80dp"
+        android:src="@drawable/shcool_name" />
 
 
     <ImageView
         android:id="@+id/bottom_1"
-        android:paddingHorizontal="80dp"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/sichuan_bottom_1"/>
+        android:layout_height="80dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:paddingHorizontal="80dp"
+        android:src="@drawable/bottom" />
 </RelativeLayout>

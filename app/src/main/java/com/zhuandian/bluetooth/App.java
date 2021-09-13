@@ -12,7 +12,7 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        Bmob.initialize(this, "e1a748d320a1a3eed70f2acb9f8c6222");
+//        Bmob.initialize(this, "e1a748d320a1a3eed70f2acb9f8c6222");
         // 本地崩溃log
         MyCrashHandler mCrashHandler = MyCrashHandler.getInstance();
         mCrashHandler.init(this);

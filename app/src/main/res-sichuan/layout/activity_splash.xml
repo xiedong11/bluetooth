@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_ffffff"
+    tools:context=".SplashActivity">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/tv_english_title"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
+        android:letterSpacing="0.3"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        android:text="柔性光电功能材料课题组"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/tv_english_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/iv_log"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="30dp"
+        android:text="Flexible Photoelectric Functional Materials"
+        android:textSize="15sp" />
+
+    <ImageView
+        android:id="@+id/iv_log"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:layout_centerInParent="true"
+        android:src="@drawable/si_chuan_logo" />
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="80dp"
+        android:layout_above="@+id/bottom_1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="-30dp"
+        android:paddingHorizontal="80dp"
+        android:src="@drawable/sichuan_bottom_2" />
+
+
+    <ImageView
+        android:id="@+id/bottom_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:paddingHorizontal="80dp"
+        android:src="@drawable/sichuan_bottom_1" />
+</RelativeLayout>

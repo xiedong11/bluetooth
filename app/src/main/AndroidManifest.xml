@@ -34,9 +34,9 @@
         <activity android:name=".TestActivity"></activity>
         <activity android:name=".DevicesListActivity" />
 
-        <provider
-            android:name="cn.bmob.v3.util.BmobContentProvider"
-            android:authorities="com.zhuandian.bluetooth.BmobContentProvider" />
+<!--        <provider-->
+<!--            android:name="cn.bmob.v3.util.BmobContentProvider"-->
+<!--            android:authorities="com.zhuandian.bluetooth.BmobContentProvider" />-->
     </application>
 
 </manifest>

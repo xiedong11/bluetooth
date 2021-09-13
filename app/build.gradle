@@ -8,12 +8,12 @@ android {
     buildToolsVersion "29.0.3"
 
     defaultConfig {
-        applicationId "com.zhuandian.bluetooth"
+//        applicationId "com.zhuandian.bluetooth"
         minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
-
+        flavorDimensions "default"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -38,7 +38,11 @@ android {
         main {
             jniLibs.srcDirs = ['libs']
         }
+        sichuan.res.srcDirs = ['src/main/res-sichuan']
+        xian.res.srcDirs = ['src/main/res-xian']
+
     }
+
     dexOptions {
         javaMaxHeapSize "4g"
     }
@@ -50,6 +54,15 @@ android {
     }
     kotlinOptions {
         jvmTarget = '1.8'
+    }
+
+    productFlavors {
+        xian{
+            applicationId "com.zhuandian.bluetooth.xian"
+        }
+        sichuan{
+            applicationId "com.zhuandian.bluetooth.sichuan"
+        }
     }
 }
 
