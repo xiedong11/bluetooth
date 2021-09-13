@@ -2,13 +2,16 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
     android:orientation="vertical">
 
     <TextView
+        android:text="fsdfsdadfsafdsa"
         android:id="@+id/item_device_name"
         android:layout_width="match_parent"
         android:background="@drawable/button_bg"
         android:layout_height="100dp"
-        android:gravity="center" />
+        android:paddingLeft="30dp"
+        android:gravity="center_vertical" />
 
 </LinearLayout>

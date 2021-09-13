@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".DemoActivity">
+    <item android:id="@+id/device_list"
+        android:title="连接设备"
+        android:orderInCategory="100"
+        app:showAsAction="never"  />
+
+    <item android:id="@+id/save_data"
+        android:title="保存数据"
+        android:orderInCategory="100"
+        app:showAsAction="never"  />
+</menu>
+

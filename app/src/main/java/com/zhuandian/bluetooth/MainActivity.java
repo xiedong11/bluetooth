@@ -20,6 +20,8 @@ import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
 import android.text.format.DateFormat;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -38,6 +40,8 @@ import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.github.mikephil.charting.utils.Utils;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -52,9 +56,6 @@ public class MainActivity extends AppCompatActivity {
     private static final int REQUEST_ENABLE_BT = 1;
 
     private TextView txtIsConnected;
-
-    private Button btnPairedDevices;
-
     private BluetoothAdapter mBluetoothAdapter;
     private ConnectedThread mConnectedThread;
     private TextView tvData;
@@ -66,25 +67,29 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         txtIsConnected = (TextView) findViewById(R.id.txtIsConnected);
-        findViewById(R.id.btn_save).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showSaveDataDialog();
-            }
-        });
-
         mChart = (LineChart) findViewById(R.id.chart1);
 //        mChart.setOnChartGestureListener(this);
 //        mChart.setOnChartValueSelectedListener(this);
 
         initLineChar();
-        btnPairedDevices = (Button) findViewById(R.id.btnPairedDevices);
         tvData = (TextView) findViewById(R.id.tv_data);
 
-        btnPairedDevices.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        requestPermission();
 
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull @NotNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.device_list:
                 // 获取蓝牙适配器
                 mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
                 if (mBluetoothAdapter == null) {
@@ -101,14 +106,12 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent();
                 intent.setClass(getApplicationContext(), DevicesListActivity.class);
                 startActivity(intent);
-
-            }
-        });
-
-
-        requestPermission();
-
-
+                break;
+            case R.id.save_data:
+                showSaveDataDialog();
+                break;
+        }
+        return true;
     }
 
     private void initLineChar() {

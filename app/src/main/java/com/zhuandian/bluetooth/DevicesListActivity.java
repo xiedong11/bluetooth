@@ -19,6 +19,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +30,7 @@ import java.util.UUID;
 import com.zhuandian.bluetooth.R;
 
 
-public class DevicesListActivity extends Activity {
+public class DevicesListActivity extends AppCompatActivity {
 
 
     private BluetoothAdapter mBluetoothAdapter;
@@ -41,6 +43,7 @@ public class DevicesListActivity extends Activity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.listview_devices);
+        setTitle("设备列表");
 
         ListView listView = (ListView) findViewById(R.id.listview_devices);
         mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
@@ -49,7 +52,7 @@ public class DevicesListActivity extends Activity {
         Set<BluetoothDevice> pairedDevices = mBluetoothAdapter.getBondedDevices();
         if (pairedDevices.size() > 0) {
             for (BluetoothDevice device : pairedDevices) {
-                mDevicesArray.add(device.getName() + "\n" + device.getAddress());
+                mDevicesArray.add("设备名称："+device.getName() + "\n" + "设备地址："+device.getAddress());
                 deviceList.add(device);
             }
         }
