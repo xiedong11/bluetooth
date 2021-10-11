@@ -3,6 +3,12 @@ plugins {
     id 'kotlin-android'
 }
 
+
+def releaseTime() {
+    //设置打包时间格式 如：2018071909
+    return new Date().format("yyyyMMddHH", TimeZone.getTimeZone("GMT+08:00"))
+}
+
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.3"
@@ -23,6 +29,17 @@ android {
             keyPassword '123456'
             storeFile file('key.jks')
             storePassword '123456'
+        }
+    }
+
+    applicationVariants.all { variant ->
+        variant.outputs.all { output ->// each 改为 all
+            //apk命名格式 如 lyx_versionName_打包时间  ZSQY_3.0.7_渠道名_18071802_2018071910.apk
+            def fileName = "BLE_${variant.productFlavors[0].name}_${releaseTime()}".toUpperCase()+".apk"
+            def outFile = output.outputFile
+            if (outFile != null && outFile.name.endsWith('.apk')) {
+                outputFileName = fileName  //  output.outputFile 改为 outputFileName
+            }
         }
     }
 
