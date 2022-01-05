@@ -55,8 +55,8 @@ android {
         main {
             jniLibs.srcDirs = ['libs']
         }
-        sichuan.res.srcDirs = ['src/main/res-sichuan']
-        xian.res.srcDirs = ['src/main/res-xian']
+//        sichuan.res.srcDirs = ['src/main/res-sichuan']
+//        xian.res.srcDirs = ['src/main/res-xian']
 
     }
 
@@ -74,11 +74,8 @@ android {
     }
 
     productFlavors {
-        xian{
-            applicationId "com.zhuandian.bluetooth.xian.ble"
-        }
-        sichuan{
-            applicationId "com.zhuandian.bluetooth.sichuan.ble"
+        liubitao{
+            applicationId "com.zhuandian.bluetooth.liubitao.ble"
         }
     }
 }
